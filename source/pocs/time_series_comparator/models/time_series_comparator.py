@@ -182,7 +182,7 @@ class TimeSeriesComparator:
             fig.tight_layout()
             plt.show()
 
-        return slope_dfa1, slope_dfa2
+        return slope_dfa1, slope_dfa2, beta1, beta2
 
     # --- Kullback-Leibler divergence ---
 

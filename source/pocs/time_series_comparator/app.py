@@ -67,7 +67,7 @@ def run_comparisons(series_data, series_key, series_label, p_values, plot=True):
         stats1, stats2 = ts_comp.compare_basic_stats()
         ent1, ent2 = ts_comp.compare_entropy()
         kl_pq, kl_qp = ts_comp.kullback_leibler()
-        dfa_alpha1, dfa_alpha2 = ts_comp.compare_dfa_psd()
+        dfa_alpha1, dfa_alpha2, beta1, beta2 = ts_comp.compare_dfa_psd()
 
         # Optional: plots
         ts_comp.display_similarity_report()
@@ -95,7 +95,9 @@ def run_comparisons(series_data, series_key, series_label, p_values, plot=True):
             'kl_series_pmodel': kl_pq,
             'kl_pmodel_series': kl_qp,
             f'dfa_{series_key}': dfa_alpha1,
-            'dfa_pmodel': dfa_alpha2
+            'dfa_pmodel': dfa_alpha2,
+            f'psd_{series_key}': beta1,
+            'psd_pmodel': beta2
         })
 
     return pd.DataFrame(results)
@@ -104,10 +106,10 @@ def plot_all_metrics_vs_p(results_df, series_key):
     """
     Plot comparison metrics between the time series and P-models.
     """
-    basic_metrics = ['mean', 'std', 'skewness', 'kurtosis']
-    entropy_metric = 'entropy'
+    basic_metrics = ['skewness', 'kurtosis']
 
-    n_metrics = len(basic_metrics) + 1 + 1 + 1  # +1 entropy, +1 KL, +1 DFA
+    # Total de métricas: skewness, kurtosis, entropy, KL, DFA, PSD
+    n_metrics = len(basic_metrics) + 1 + 1 + 1 + 1  # +1 entropy, +1 KL, +1 DFA, +1 PSD
     n_cols = 3
     n_rows = (n_metrics + n_cols - 1) // n_cols
 
@@ -158,8 +160,9 @@ def plot_all_metrics_vs_p(results_df, series_key):
     # Plot KL divergence
     i += 1
     ax = plt.subplot(n_rows, n_cols, i + 1)
-    ax.plot(results_df['p_value'], results_df['kl_series_pmodel'], marker='o', label='KL Series → P-model')
-    ax.plot(results_df['p_value'], results_df['kl_pmodel_series'], marker='o', label='KL P-model → Series')
+    ax.plot(results_df['p_value'], results_df['kl_series_pmodel'], marker='o', label=f'KL {series_key.capitalize()} → P-model')
+    # ax.plot(results_df['p_value'], results_df['kl_pmodel_series'], marker='o', label=f'KL P-model → {series_key.capitalize()}')
+
     ax.set_title('KL Divergence')
     if i >= n_metrics - n_cols:
         ax.set_xlabel('p value')
@@ -189,6 +192,26 @@ def plot_all_metrics_vs_p(results_df, series_key):
     ax.legend()
     ax.grid(True)
 
+    # Plot PSD exponent
+    i += 1
+    ax = plt.subplot(n_rows, n_cols, i + 1)
+    pmodel_vals = results_df['psd_pmodel']
+    series_val = results_df[f'psd_{series_key}'].iloc[0]
+    abs_diff = np.abs(pmodel_vals - series_val)
+
+    ax.plot(results_df['p_value'], pmodel_vals, marker='o', label='P-model')
+    ax.axhline(y=series_val, color='r', linestyle='--', label=series_key.capitalize())
+    ax.plot(results_df['p_value'], abs_diff, marker='s', linestyle='--', color='black', label='|Diff|')
+
+    ax.set_title('PSD Exponent (β) Comparison')
+    if i >= n_metrics - n_cols:
+        ax.set_xlabel('p value')
+    else:
+        ax.set_xticklabels([])
+    ax.set_ylabel('PSD β')
+    ax.legend()
+    ax.grid(True)
+
     plt.tight_layout()
     plt.show()
 
@@ -197,16 +220,16 @@ def plot_all_metrics_vs_p(results_df, series_key):
 # ===============================
 if __name__ == "__main__":
     # Select series to analyze
-    series_key = "rho"  # Change to 'tokamak' 'sdo' or 'rho'
+    series_key = "tokamak"  # Change to 'tokamak' 'sdo' or 'rho'
 
     # Load and normalize the series
     series_data, series_label = load_and_normalize_series(series_key)
 
     # Define p values to test
-    p_values = np.linspace(0.15, 0.45, 10)
+    p_values = np.linspace(0.1, 0.49, 20)
 
     # Run the comparisons
-    results_df = run_comparisons(series_data, series_key, series_label, p_values, plot=True)
+    results_df = run_comparisons(series_data, series_key, series_label, p_values, plot=False)
 
     # Save results
     results_df.to_csv(f"{series_key}_pmodel_comparison_results.csv", index=False)
