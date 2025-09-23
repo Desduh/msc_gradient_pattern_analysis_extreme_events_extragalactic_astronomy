@@ -106,6 +106,16 @@ def plot_all_metrics_vs_p(results_df, series_key):
     """
     Plot comparison metrics between the time series and P-models.
     """
+
+    plt.rcParams.update({
+        "font.size": 16,       # tamanho padrão da fonte
+        "axes.titlesize": 18,  # tamanho dos títulos
+        "axes.labelsize": 16,  # tamanho dos rótulos dos eixos
+        "xtick.labelsize": 14, # tamanho dos ticks do eixo X
+        "ytick.labelsize": 14, # tamanho dos ticks do eixo Y
+        "legend.fontsize": 14, # tamanho da legenda
+    })
+
     basic_metrics = ['skewness', 'kurtosis']
 
     # Total de métricas: skewness, kurtosis, entropy, KL, DFA, PSD
