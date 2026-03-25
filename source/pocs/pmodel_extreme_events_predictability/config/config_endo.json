@@ -1,0 +1,29 @@
+{
+  "p_model": {
+    "p_value": [0.32, 0.42],
+    "series_length": 1024
+  },
+  "data": {
+      "window_size": 384,
+      "lookahead": 10,
+      "peak_percentile": 99,
+      "num_series_train": 7000,
+      "num_series_test": 1500,
+      "num_series_validation": 1500
+  },
+  "model": {
+    "input_dim": 1,
+    "projection_dim": 32,
+    "hidden_dim": 64,
+    "num_layers": 1,
+    "dropout": 0.34,
+    "weight_decay": 1e-4,
+    "normalization": "layernorm"
+  },
+  "training": {
+    "epochs": 200,
+    "batch_size": 128,
+    "learning_rate": 0.00001,
+    "num_series_per_epoch": 1
+  }
+}  
