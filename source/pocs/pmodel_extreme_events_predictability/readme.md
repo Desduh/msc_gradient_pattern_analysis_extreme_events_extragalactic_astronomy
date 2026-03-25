@@ -1,20 +1,21 @@
-# Multifractal Cascade Predictability of Extreme Events (p-model)
-
-
+# Multifractal Cascade Predictability of Extreme Events (P-model)
 
 This repository contains the code and experiments associated with the paper:
 
 > **"Modeling and Predictability of Extreme Events in Endogenous and Exogenous Time Series Using a Multifractal Cascade Framework (P-model)"**
 
-**Authors**  
-Carlos Eduardo Falandes¹*, Mariana Rubet¹, Reinaldo R. Rosa¹, Salatiel A. A. Jordão¹,  
-Rubens A. Sautter², Juan A. Valdivia³ 
-
-¹ Coordenação de Pesquisa Aplicada e Desenvolvimento Tecnológico (COPDT), Instituto Nacional de Pesquisas Espaciais (INPE), Brazil  
-² Departamento Acadêmico de Informática. Universidade Tecnológica Federal do Paraná, Brazil  
-³ Departamento de Física, Facultad de Ciencias, Universidad de Chile, Chile
-
-📧 carlos.falandes@inpe.br
+> **Authors:**
+> Carlos Eduardo Falandes<sup>1*</sup>, Mariana Rubet<sup>1</sup>, Reinaldo R. Rosa<sup>1</sup>, Salatiel A. A. Jordão<sup>1</sup>,
+> Rubens A. Sautter<sup>2</sup>, Juan A. Valdivia<sup>3</sup>
+>
+>> <sup>1</sup> Coordenação de Pesquisa Aplicada e Desenvolvimento Tecnológico (COPDT), Instituto Nacional de Pesquisas Espaciais (INPE), Brazil
+>> 
+>> <sup>2</sup> Departamento Acadêmico de Informática, Universidade Tecnológica Federal do Paraná (UTFPR), Brazil
+>> 
+>> <sup>3</sup> Departamento de Física, Facultad de Ciencias, Universidad de Chile, Chile
+>
+> 📧 *Corresponding author:* [carlos.falandes@inpe.br](mailto:carlos.falandes@inpe.br)
+> Alternative contact: [eduardofalandess@gmail.com](mailto:eduardofalandess@gmail.com)
 
 ---
 
