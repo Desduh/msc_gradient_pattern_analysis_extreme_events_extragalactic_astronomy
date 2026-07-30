@@ -14,9 +14,9 @@ The repository includes the complete Python implementation of the GPA framework,
 
 📄 **Master's Dissertation Proposal**
 
-The complete dissertation proposal can be found in:
+The complete dissertation proposal is available here:
 
-https://github.com/Desduh/msc_gradient_pattern_analysis_extreme_events_extragalactic_astronomy/blob/main/documents/falandes_master_proposal_gradient_pattern_analysis_gpa_two_new_applications.pdf
+[Gradient Pattern Analysis (GPA): Two New Applications for Pattern Characterization in Physics of Extreme Events and Extragalactic Astronomy](https://github.com/Desduh/msc_gradient_pattern_analysis_extreme_events_extragalactic_astronomy/blob/main/documents/falandes_master_proposal_gradient_pattern_analysis_gpa_two_new_applications.pdf)
 
 ---
 
