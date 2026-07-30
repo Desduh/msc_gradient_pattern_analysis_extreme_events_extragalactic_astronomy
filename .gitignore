@@ -39,7 +39,6 @@ data/
 *.jpg
 *.jpeg
 *.gif
-*.pdf
 *.svg
 
 # Arquivos grandes (se estiver usando DVC, por exemplo)
